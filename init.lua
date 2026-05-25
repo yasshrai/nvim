@@ -96,23 +96,43 @@ vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
 vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
 
---colorscheme
-vim.cmd.colorscheme('tokyonight-night')
-vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+-- colorscheme
+vim.cmd.colorscheme("tokyonight-night")
 
-vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "none" })
-vim.api.nvim_set_hl(0, "NvimTreeNormalNC", { bg = "none" })
-vim.api.nvim_set_hl(0, "NvimTreeEndOfBuffer", { bg = "none" })
+local function transparent()
+    local groups = {
+        "Normal",
+        "NormalNC",
+        "NormalFloat",
+        "SignColumn",
+        "EndOfBuffer",
+        "Terminal",
 
--- terminal transparency
-vim.api.nvim_set_hl(0, "Terminal", { bg = "none" })
-vim.api.nvim_set_hl(0, "TermCursorNC", { bg = "none" })
+        -- NvimTree
+        "NvimTreeNormal",
+        "NvimTreeNormalNC",
+        "NvimTreeEndOfBuffer",
 
-vim.api.nvim_create_autocmd("TermOpen", {
-    callback = function()
-        vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-        vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
-        vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
+        -- optional
+        "FloatBorder",
+        "TelescopeNormal",
+        "TelescopeBorder",
+    }
+
+    for _, group in ipairs(groups) do
+        vim.api.nvim_set_hl(0, group, { bg = "none" })
     end
+end
+
+transparent()
+
+-- reapply after colorscheme changes
+vim.api.nvim_create_autocmd("ColorScheme", {
+    callback = transparent,
+})
+
+-- reapply when opening nvim-tree
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "NvimTree",
+    callback = transparent,
 })
