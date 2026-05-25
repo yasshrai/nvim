@@ -100,6 +100,8 @@ require("lazy").setup({{
     "nvim-telescope/telescope.nvim",
     dependencies = {"nvim-lua/plenary.nvim"}
 }, {"vague2k/vague.nvim"},{
-    "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000 
-
+  "folke/tokyonight.nvim",
+  lazy = false,
+  priority = 1000,
+  opts = {},
 }})

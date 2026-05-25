@@ -65,8 +65,9 @@ vim.keymap.set("n", "<leader>t", ":NvimTreeFindFile<CR>",{silent = true })
 --lsp
 vim.keymap.set('n', ']d', function() vim.diagnostic.jump({count=1,float=true}) end)
 vim.keymap.set('n', '[d', function() vim.diagnostic.jump({count=-1,float=true}) end)
-vim.keymap.set('n', 'gl', vim.diagnostic.open_float) 
+vim.keymap.set('n', 'gl', vim.diagnostic.open_float)
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
+vim.keymap.set('n','gd',function() vim.lsp.buf.definition() end)
 
 -- Tab 
 vim.opt.tabstop = 4
@@ -96,6 +97,22 @@ vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
 
 --colorscheme
-vim.cmd.colorscheme('default')
+vim.cmd.colorscheme('tokyonight-night')
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+
+vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NvimTreeNormalNC", { bg = "none" })
+vim.api.nvim_set_hl(0, "NvimTreeEndOfBuffer", { bg = "none" })
+
+-- terminal transparency
+vim.api.nvim_set_hl(0, "Terminal", { bg = "none" })
+vim.api.nvim_set_hl(0, "TermCursorNC", { bg = "none" })
+
+vim.api.nvim_create_autocmd("TermOpen", {
+    callback = function()
+        vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+        vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+        vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
+    end
+})
