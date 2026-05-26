@@ -143,3 +143,13 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.keymap.set("n", "<leader>f", function()
 	vim.lsp.buf.format()
 end)
+
+vim.opt.termguicolors = true
+require("bufferline").setup({})
+
+vim.keymap.set("n", "<Tab>", ":bnext<CR>")
+vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>")
+
+vim.keymap.set("n", "<leader>x", function()
+	vim.cmd("confirm bd")
+end)
