@@ -163,6 +163,144 @@ fd --version
 
 ---
 
+
+# Simple Neovim Formatting Setup
+
+This setup uses only:
+
+* LSP
+* External formatter binaries
+
+No extra formatting plugin is needed.
+
+---
+
+# Install Formatters
+
+## JavaScript / TypeScript
+
+```bash
+sudo npm install -g prettier
+```
+
+---
+
+## Go
+
+```bash
+go install golang.org/x/tools/cmd/goimports@latest
+```
+
+---
+
+## Lua
+
+```bash
+cargo install stylua
+```
+
+---
+
+## Python
+
+```bash
+pip install black
+```
+
+---
+
+## C / C++
+
+```bash
+sudo pacman -S clang
+```
+
+---
+
+## Shell
+
+```bash
+sudo pacman -S shfmt
+```
+
+---
+
+## Rust
+
+```bash
+rustup component add rustfmt
+```
+
+---
+
+# How To Format Code
+
+Inside Neovim:
+
+```vim
+:lua vim.lsp.buf.format()
+```
+
+---
+
+# Optional Keymap
+
+Add this to your Neovim config:
+
+```lua
+vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
+```
+
+Usage:
+
+```text
+Space + f
+```
+
+(if leader key is space)
+
+---
+
+# Auto Format On Save
+
+Add this:
+
+```lua
+vim.api.nvim_create_autocmd("BufWritePre", {
+    callback = function()
+        vim.lsp.buf.format()
+    end,
+})
+```
+
+Now files automatically format when saving.
+
+---
+
+# Supported Languages
+
+| Language   | Formatter         |
+| ---------- | ----------------- |
+| Go         | goimports + gofmt |
+| JavaScript | prettier          |
+| TypeScript | prettier          |
+| Lua        | stylua            |
+| Python     | black             |
+| Rust       | rustfmt           |
+| C          | clang-format      |
+| C++        | clang-format      |
+| Shell      | shfmt             |
+
+---
+
+# Notes
+
+* Install formatter binaries once.
+* LSP handles formatting.
+* Save file to auto-format.
+* Use `Space + f` for manual formatting.
+
+
 ## 🧠 General Notes & Health Checks
 
 * Avoid using `pip install` globally (breaks system on Arch).

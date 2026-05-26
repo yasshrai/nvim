@@ -2,14 +2,14 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable",
-    lazypath,
-  })
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable",
+		lazypath,
+	})
 end
 
 vim.opt.rtp:prepend(lazypath)
@@ -21,8 +21,8 @@ vim.opt.relativenumber = true
 -- Terminal setup
 -- Open terminal in insert mode
 vim.api.nvim_create_autocmd("TermOpen", {
-  pattern = "*",
-  command = "startinsert",
+	pattern = "*",
+	command = "startinsert",
 })
 
 -- Easier escape from terminal mode
@@ -30,12 +30,12 @@ vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { silent = true })
 
 -- Command to open terminal at the bottom (like VS Code)
 vim.api.nvim_create_user_command("Term", function()
-  vim.cmd("botright split | terminal")
+	vim.cmd("botright split | terminal")
 end, {})
 
 -- splits
 vim.keymap.set("n", "<leader>sv", ":vsplit<CR>")
-vim.keymap.set("n", "<leader>sh",":split<CR>")
+vim.keymap.set("n", "<leader>sh", ":split<CR>")
 
 -- Move between splits easily (works for terminal too)
 vim.keymap.set("n", "<C-h>", "<C-w>h", { silent = true })
@@ -60,21 +60,26 @@ vim.opt.mouse = "a"
 
 --tree sitter :
 vim.keymap.set("n", "<leader>n", ":NvimTreeToggle<CR>", { silent = true })
-vim.keymap.set("n", "<leader>t", ":NvimTreeFindFile<CR>",{silent = true })
+vim.keymap.set("n", "<leader>t", ":NvimTreeFindFile<CR>", { silent = true })
 
 --lsp
-vim.keymap.set('n', ']d', function() vim.diagnostic.jump({count=1,float=true}) end)
-vim.keymap.set('n', '[d', function() vim.diagnostic.jump({count=-1,float=true}) end)
-vim.keymap.set('n', 'gl', vim.diagnostic.open_float)
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
-vim.keymap.set('n','gd',function() vim.lsp.buf.definition() end)
+vim.keymap.set("n", "]d", function()
+	vim.diagnostic.jump({ count = 1, float = true })
+end)
+vim.keymap.set("n", "[d", function()
+	vim.diagnostic.jump({ count = -1, float = true })
+end)
+vim.keymap.set("n", "gl", vim.diagnostic.open_float)
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist)
+vim.keymap.set("n", "gd", function()
+	vim.lsp.buf.definition()
+end)
 
--- Tab 
+-- Tab
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
-
 
 -- disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1
@@ -83,10 +88,7 @@ vim.g.loaded_netrwPlugin = 1
 -- optionally enable 24-bit colour
 vim.opt.termguicolors = true
 
-
 require("config.lazy")
-
-
 
 --telescope
 local builtin = require("telescope.builtin")
@@ -100,39 +102,44 @@ vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
 vim.cmd.colorscheme("tokyonight-night")
 
 local function transparent()
-    local groups = {
-        "Normal",
-        "NormalNC",
-        "NormalFloat",
-        "SignColumn",
-        "EndOfBuffer",
-        "Terminal",
+	local groups = {
+		"Normal",
+		"NormalNC",
+		"NormalFloat",
+		"SignColumn",
+		"EndOfBuffer",
+		"Terminal",
 
-        -- NvimTree
-        "NvimTreeNormal",
-        "NvimTreeNormalNC",
-        "NvimTreeEndOfBuffer",
+		-- NvimTree
+		"NvimTreeNormal",
+		"NvimTreeNormalNC",
+		"NvimTreeEndOfBuffer",
 
-        -- optional
-        "FloatBorder",
-        "TelescopeNormal",
-        "TelescopeBorder",
-    }
+		-- optional
+		"FloatBorder",
+		"TelescopeNormal",
+		"TelescopeBorder",
+	}
 
-    for _, group in ipairs(groups) do
-        vim.api.nvim_set_hl(0, group, { bg = "none" })
-    end
+	for _, group in ipairs(groups) do
+		vim.api.nvim_set_hl(0, group, { bg = "none" })
+	end
 end
 
 transparent()
 
 -- reapply after colorscheme changes
 vim.api.nvim_create_autocmd("ColorScheme", {
-    callback = transparent,
+	callback = transparent,
 })
 
 -- reapply when opening nvim-tree
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = "NvimTree",
-    callback = transparent,
+	pattern = "NvimTree",
+	callback = transparent,
 })
+
+--format shortcut
+vim.keymap.set("n", "<leader>f", function()
+	vim.lsp.buf.format()
+end)
