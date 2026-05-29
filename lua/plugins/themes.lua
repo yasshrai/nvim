@@ -1,6 +1,11 @@
-return { { "vague2k/vague.nvim" }, {
-	"folke/tokyonight.nvim",
-	lazy = false,
-	priority = 1000,
-	opts = {},
-} }
+return {
+	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {},
+	},
+	{ "rebelot/kanagawa.nvim" },
+	{ "nyoom-engineering/oxocarbon.nvim" },
+	{ "iruzo/matrix-nvim" },
+}

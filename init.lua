@@ -133,6 +133,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 	callback = transparent,
 })
 
+vim.opt.background = "dark"
 -- reapply when opening nvim-tree
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "NvimTree",
