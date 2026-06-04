@@ -154,3 +154,4 @@ vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>")
 vim.keymap.set("n", "<leader>x", function()
 	vim.cmd("confirm bd")
 end)
+vim.opt.clipboard = "unnamedplus"
