@@ -313,3 +313,48 @@ Inside Neovim, run:
 ```vim
 :checkhealth lsp
 ```
+# Neovim Debugging Setup (Python & Go)
+
+## Python
+
+### Required Installation
+
+Install Python debugger:
+
+```bash
+sudo pacman -S  python-debugpy
+```
+
+Verify installation:
+
+```bash
+python -m debugpy --version
+```
+---
+
+## Go
+
+### Required Installation
+
+Install Delve:
+
+```bash
+go install github.com/go-delve/delve/cmd/dlv@latest
+```
+
+Verify installation:
+
+```bash
+dlv version
+```
+If `dlv` is not found, add:
+
+```bash
+export PATH="$PATH:$HOME/go/bin"
+```
+
+to your shell configuration.
+
+---
+
+
