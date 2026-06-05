@@ -18,6 +18,25 @@ vim.g.mapleader = " "
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+-- Tab
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.smartindent = true
+
+-- disable netrw at the very start of your init.lua
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- optionally enable 24-bit colour
+vim.opt.termguicolors = true
+
+-- Optional: mouse resize
+vim.opt.mouse = "a"
+
+--clipboard
+vim.opt.clipboard = "unnamedplus"
+
 -- Terminal setup
 -- Open terminal in insert mode
 vim.api.nvim_create_autocmd("TermOpen", {
@@ -55,9 +74,6 @@ vim.keymap.set("n", "<C-Down>", ":resize -2<CR>", { silent = true })
 vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", { silent = true })
 vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { silent = true })
 
--- Optional: mouse resize
-vim.opt.mouse = "a"
-
 --tree sitter :
 vim.keymap.set("n", "<leader>n", ":NvimTreeToggle<CR>", { silent = true })
 vim.keymap.set("n", "<leader>t", ":NvimTreeFindFile<CR>", { silent = true })
@@ -74,19 +90,6 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist)
 vim.keymap.set("n", "gd", function()
 	vim.lsp.buf.definition()
 end)
-
--- Tab
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
-vim.opt.smartindent = true
-
--- disable netrw at the very start of your init.lua
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
--- optionally enable 24-bit colour
-vim.opt.termguicolors = true
 
 require("config.lazy")
 
@@ -145,7 +148,6 @@ vim.keymap.set("n", "<leader>f", function()
 	vim.lsp.buf.format()
 end)
 
-vim.opt.termguicolors = true
 require("bufferline").setup({})
 
 vim.keymap.set("n", "<Tab>", ":bnext<CR>")
@@ -154,4 +156,3 @@ vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>")
 vim.keymap.set("n", "<leader>x", function()
 	vim.cmd("confirm bd")
 end)
-vim.opt.clipboard = "unnamedplus"
