@@ -1,3 +1,4 @@
+![Neovim Config](assets/demo.png)
 # 🚀 Neovim Development Environment Setup
 
 This guide lists all external tools required for a full LSP-based development setup in Neovim. It covers C/C++, Python, Go, Rust, JavaScript ecosystem, Lua, Shell scripts, and search tools.
