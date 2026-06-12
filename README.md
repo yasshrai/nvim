@@ -356,6 +356,30 @@ export PATH="$PATH:$HOME/go/bin"
 
 to your shell configuration.
 
+
 ---
 
+# 🐳 Docker Setup
+
+## 📦 Install Docker Language Server
+
+```bash
+sudo npm install -g dockerfile-language-server-nodejs
+```
+
+Verify:
+
+```bash
+docker-langserver --version
+```
+
+---
+
+## 📦 Docker Compose Language Server (Optional)
+
+```bash
+sudo npm install -g @microsoft/compose-language-service
+```
+
+---
 

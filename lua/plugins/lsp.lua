@@ -58,5 +58,17 @@ return {
 			},
 		})
 		vim.lsp.enable("lua_ls")
+		-- Docker
+		vim.lsp.config("dockerls", {
+			capabilities = capabilities,
+		})
+
+		vim.lsp.enable("dockerls")
+		-- Docker Compose
+		vim.lsp.config("docker_compose_language_service", {
+			capabilities = capabilities,
+		})
+
+		vim.lsp.enable("docker_compose_language_service")
 	end,
 }
