@@ -52,9 +52,10 @@ vim.api.nvim_create_user_command("Term", function()
 	vim.cmd("botright split | terminal")
 end, {})
 
+
 -- splits
-vim.keymap.set("n", "<leader>sv", ":vsplit<CR>")
-vim.keymap.set("n", "<leader>sh", ":split<CR>")
+vim.keymap.set("n", "<leader>sv", ":vsplit<CR>", { desc="vertical split" })
+vim.keymap.set("n", "<leader>sh", ":split<CR>", { desc="horizontal split" })
 
 -- Move between splits easily (works for terminal too)
 vim.keymap.set("n", "<C-h>", "<C-w>h", { silent = true })
