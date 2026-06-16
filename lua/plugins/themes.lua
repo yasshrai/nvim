@@ -8,4 +8,5 @@ return {
 	{ "rebelot/kanagawa.nvim" },
 	{ "nyoom-engineering/oxocarbon.nvim" },
 	{ "iruzo/matrix-nvim" },
+	{ "nyoom-engineering/oxocarbon.nvim" },
 }
