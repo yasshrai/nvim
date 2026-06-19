@@ -9,4 +9,5 @@ return {
 	{ "nyoom-engineering/oxocarbon.nvim" },
 	{ "iruzo/matrix-nvim" },
 	{ "nyoom-engineering/oxocarbon.nvim" },
+	{ "EdenEast/nightfox.nvim" },
 }

@@ -52,10 +52,9 @@ vim.api.nvim_create_user_command("Term", function()
 	vim.cmd("botright split | terminal")
 end, {})
 
-
 -- splits
-vim.keymap.set("n", "<leader>sv", ":vsplit<CR>", { desc="vertical split" })
-vim.keymap.set("n", "<leader>sh", ":split<CR>", { desc="horizontal split" })
+vim.keymap.set("n", "<leader>sv", ":vsplit<CR>", { desc = "vertical split" })
+vim.keymap.set("n", "<leader>sh", ":split<CR>", { desc = "horizontal split" })
 
 -- Move between splits easily (works for terminal too)
 vim.keymap.set("n", "<C-h>", "<C-w>h", { silent = true })
@@ -103,7 +102,7 @@ vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "find buffers" })
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "find help tags" })
 
 -- colorscheme
-vim.cmd.colorscheme("tokyonight-night")
+vim.cmd.colorscheme("carbonfox")
 
 local function transparent()
 	local groups = {
